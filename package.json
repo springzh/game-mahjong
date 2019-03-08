@@ -15,6 +15,7 @@
   "author": "fishuncle",
   "license": "MIT",
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
   },
@@ -43,7 +44,7 @@
     "url-loader": "^1.0.1",
     "webpack": "4.6.0",
     "webpack-cli": "^2.0.14",
-    "webpack-dev-server": "3.1.4",
+    "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2",
     "webstorm-disable-index": "^1.2.0"
   },

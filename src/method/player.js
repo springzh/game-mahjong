@@ -10,6 +10,7 @@ class Player {
     this.options = options;
     this.position = options.position;
     this.Game = options.Game;
+    this.Desktop = options.Desktop;
     this.init();
   }
 
@@ -33,7 +34,7 @@ class Player {
     if (sort) {
       result = sortArray(value);
     }
-    CardRender(this, this.Game, result);
+    CardRender(this, result);
     this._card = result
   }
 

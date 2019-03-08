@@ -1,5 +1,7 @@
 'use strict';
 
+import {DesktopRender} from "../dom/desktop";
+
 class Desktop {
   static modules = [];
 
@@ -14,7 +16,8 @@ class Desktop {
   }
 
   set card(value) {
-    this._card = value
+    this._card = value;
+    DesktopRender();
   }
 
   init() {

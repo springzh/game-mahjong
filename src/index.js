@@ -1,77 +1,40 @@
-'use strict';
-import React, {Fragment} from 'react';
-import ReactDOM from 'react-dom';
-import './index.less';
+import _Game from './method/game';
+import Card from './method/card';
+import _Desktop from './method/desktop';
+import _Player from './method/player';
 
-class GameEle extends React.Component {
+_Game.use(Card);
 
-  render() {
-    return (
-      <Fragment>
-      </Fragment>
-    );
-  }
-}
 
-class Game {
-  static modules = [];
+const Game = new _Game({
+  onReady: () => {
 
-  constructor(options = {}) {
-    this._cardTotal = [];
-    this._playing = true;
-    this.options = options;
-    this.init();
-  }
-
-  get playing() {
-    return this._playing
-  }
-
-  set playing(value) {
-    this._playing = value
-  }
-
-  get cardTotal() {
-    return this._cardTotal
-  }
-
-  set cardTotal(value) {
-    this._cardTotal = value
-  }
-
-  init() {
-    window.addEventListener('DOMContentLoaded', () => {
-      this.initModules();
-      this.options.onReady && this.options.onReady(this);
-      // let dom = document.getElementById('Game');
-      // if (!dom) {
-      //   dom = document.createElement('div');
-      //   dom.setAttribute('id', 'Game');
-      //   document.body.appendChild(dom);
-      // }
-      // this.Game = ReactDOM.render(<GameEle/>, dom);
+    const Desktop = new _Desktop({
+      Game
     });
+    const Player_East = new _Player({
+      position: 'east',
+      Desktop,
+      Game
+    });
+    const Player_South = new _Player({
+      position: 'south',
+      Desktop,
+      Game
+    });
+    const Player_West = new _Player({
+      position: 'west',
+      Desktop,
+      Game
+    });
+    const Player_North = new _Player({
+      position: 'north',
+      Desktop,
+      Game
+    });
+    Player_East.setCard(Game.give(13));
+    Player_South.setCard(Game.give(13));
+    Player_West.setCard(Game.give(13));
+    Player_North.setCard(Game.give(13));
   }
-
-  static use(module) {
-    Array.isArray(module) ? module.map(item => Game.use(item)) : Game.modules.push(module);
-  }
-
-  initModules() {
-    Game.modules.map(module => module.init && typeof module.init == 'function' && module.init(this));
-  }
-
-  checkPlaying() {
-    this.cardTotal.length <= 0 ? this.playing = false : void 0;
-  }
-
-  give(num = 1) {
-    const result = this.cardTotal.splice(0, num);
-    this.checkPlaying();
-    console.log(this.cardTotal);
-    return result;
-  }
-
-}
-
-export default Game;
+});

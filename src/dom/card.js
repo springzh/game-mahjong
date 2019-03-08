@@ -1,21 +1,29 @@
 'use strict';
 import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
+import {Card} from "../component";
 import './card.less';
 
 class CardEle extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      player: props.player
+    };
+  }
+
   render() {
-    const {card = [], player, Game} = this.props;
+    const {card = [], player} = this.props;
+    const {Game} = player;
     return (
       <Fragment>
         {
           card.map((item, index) => {
-            return <div className='card'
-                        key={index} /*style={{background: require('../asset/card-' + item + '.png')}}*/
-                        onClick={_ => {
-                          player.setCard(player.card.concat(Game.give()), false)
-                        }}>{item}</div>
+            return <Card key={index} num={item}
+                         onClick={_ => {
+                           player.setCard(player.card.concat(Game.give()), false)
+                         }}>{item}</Card>
           })
         }
       </Fragment>
@@ -23,8 +31,8 @@ class CardEle extends React.Component {
   }
 }
 
-export const CardRender = (player, Game, card) => {
-  const {position} = player;
+export const CardRender = (player, card) => {
+  const {position, Game, Desktop} = player;
   let dom = document.getElementById('card-' + position);
   if (!dom) {
     dom = document.createElement('div');
@@ -33,5 +41,5 @@ export const CardRender = (player, Game, card) => {
     document.body.appendChild(dom);
   }
 
-  ReactDOM.render(<CardEle card={card} player={player} Game={Game}/>, dom);
+  ReactDOM.render(<CardEle card={card} player={player}/>, dom);
 };
