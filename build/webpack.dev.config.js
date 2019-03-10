@@ -19,7 +19,7 @@ const host = (_ => {
 })() || '127.0.0.1';
 
 module.exports = merge(baseConfig, {
-  entry: {index: './index.js'},
+  entry: {index: './src/index.js'},
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   output: {

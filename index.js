@@ -1,4 +1,4 @@
-import Mahjong from './src';
+import Mahjong from './src/index.js';
 import Card from './src/method/card';
 import Player from './src/method/player';
 
