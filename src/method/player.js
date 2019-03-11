@@ -1,5 +1,5 @@
 'use strict';
-import {sortArray} from './util';
+import {sortArray} from '../util/index';
 import {CardRender} from '../dom/card';
 
 class Player {
