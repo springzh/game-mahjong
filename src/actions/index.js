@@ -1,11 +1,12 @@
 'use strict';
 
-export const TAKE_CARD = (num, position, needSort = false) => {
+export const TAKE_CARD = ({num, position, needSort = false, needConcat = true}) => {
   return {
     type: 'TAKE_CARD',
     num,
     position,
-    needSort
+    needSort,
+    needConcat
   }
 };
 

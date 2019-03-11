@@ -16,19 +16,19 @@ class Desktop extends React.Component {
       dispatch(CHECK_EVENT());
       if (round === 'east') {
         dispatch(CHANGE_ROUND('south'));
-        dispatch(TAKE_CARD(1, 'south'));
+        dispatch(TAKE_CARD({position:'south'}));
       }
       if (round === 'south') {
         dispatch(CHANGE_ROUND('west'));
-        dispatch(TAKE_CARD(1, 'west'));
+        dispatch(TAKE_CARD({position:'west'}));
       }
       if (round === 'west') {
         dispatch(CHANGE_ROUND('north'));
-        dispatch(TAKE_CARD(1, 'north'));
+        dispatch(TAKE_CARD({position:'north'}));
       }
       if (round === 'north') {
         dispatch(CHANGE_ROUND('east'));
-        dispatch(TAKE_CARD(1, 'east'));
+        dispatch(TAKE_CARD({position:'east'}));
       }
     }
   }

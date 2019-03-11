@@ -15,14 +15,15 @@ newCard(11, 19);
 newCard(21, 29);
 arr = randomArray(arr);
 
+const emptyCard = new Array(13).fill(0);
 const defaultData = {
   playing: 0, // 0 未开始 1 进行中 2 流局 3 决出胜负
   totalCard: arr,
   desktopCard: [],
-  eastCard: [],
-  southCard: [],
-  westCard: [],
-  northCard: [],
+  eastCard: emptyCard,
+  southCard: emptyCard,
+  westCard: emptyCard,
+  northCard: emptyCard,
   round: 'east',
   desktopRound: false,
   desktopEvent: '' // PENG GANG CHI HU
@@ -32,10 +33,12 @@ const game = (state = defaultData, action) => {
   switch (action.type) {
     // 拿牌
     case 'TAKE_CARD':
-      const {num = 1, position = state.round, needSort} = action;
+      const {num = 1, position = state.round, needSort, needConcat} = action;
+      let card;
+      needConcat ? card = state[position + 'Card'].concat(state.totalCard.splice(0, num)) : card = state.totalCard.splice(0, num);
       needSort ?
-        state[position + 'Card'] = sortArray(state[position + 'Card'].concat(state.totalCard.splice(0, num))) :
-        state[position + 'Card'] = state[position + 'Card'].concat(state.totalCard.splice(0, num));
+        state[position + 'Card'] = sortArray(card) :
+        state[position + 'Card'] = card;
       return Object.assign({}, state, {});
     // 打牌
     case 'THROW_CARD':

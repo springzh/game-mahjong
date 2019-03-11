@@ -17,18 +17,21 @@ class PushButton extends React.Component {
           {
             playing === 0 ? <Card num={0} onClick={_ => {
               dispatch(GAME_SETTING(1));
-              dispatch(TAKE_CARD(1, 'east'));
+              dispatch(TAKE_CARD({num: 13, position: 'east', needSort: true, needConcat: false}));
+              dispatch(TAKE_CARD({num: 13, position: 'south', needSort: true, needConcat: false}));
+              dispatch(TAKE_CARD({num: 13, position: 'west', needSort: true, needConcat: false}));
+              dispatch(TAKE_CARD({num: 13, position: 'north', needSort: true, needConcat: false}));
+              dispatch(TAKE_CARD({position: 'east'}));
             }}>游戏<br/>开始
             </Card> : null
           }
           {
             playing === 2 || playing === 3 ? <Card num={0} onClick={_ => {
-              dispatch(GAME_SETTING(1));
-              dispatch(TAKE_CARD(1, 'east'));
             }}>重新<br/>开始
             </Card> : null
           }
-          <Card num={0} onClick={_ => {}}>剩余<br/>{totalCard.length}
+          <Card num={0} onClick={_ => {
+          }}>剩余<br/>{totalCard.length}
           </Card>
         </div>
       </Fragment>
