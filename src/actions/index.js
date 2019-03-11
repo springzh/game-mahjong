@@ -22,3 +22,18 @@ export const CHANGE_ROUND = (round) => {
     round,
   }
 };
+
+export const GAME_SETTING = (playing) => {
+  return {
+    type: 'GAME_SETTING',
+    playing
+  }
+};
+
+export const CHECK_EVENT = () => {
+  return {
+    type: 'CHECK_EVENT',
+  }
+};
+
+

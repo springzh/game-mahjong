@@ -1,43 +1,24 @@
 import React, {Fragment} from 'react';
 import connect from '@/connect';
 import Card from '../Card';
-import {TAKE_CARD, THROW_CARD} from "@/actions";
-import './index.less'
+import {TAKE_CARD, THROW_CARD, GAME_SETTING} from "@/actions";
 
 class Player extends React.Component {
 
   componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch(TAKE_CARD(13, 'east', true));
-    dispatch(TAKE_CARD(13, 'south', true));
-    dispatch(TAKE_CARD(13, 'west', true));
-    dispatch(TAKE_CARD(13, 'north', true));
+    const {dispatch, position} = this.props;
+    dispatch(TAKE_CARD(13, position, true));
   }
 
   render() {
-    const {game} = this.props;
-    const {eastCard, southCard, westCard, northCard} = game;
-    console.log(eastCard);
+    const {game, position} = this.props;
+    const {round, playing} = game;
     return (
       <Fragment>
-        <div className='card-box'>
+        <div className={`card-box ${round === position && playing === 1 ? 'active' : ''}`}>
           {
-            eastCard.map((item, index) => <Card key={index} num={item} index={index} position='east'/>)
-          }
-        </div>
-        <div className='card-box'>
-          {
-            southCard.map((item, index) => <Card key={index} num={item} index={index} position='south'/>)
-          }
-        </div>
-        <div className='card-box'>
-          {
-            westCard.map((item, index) => <Card key={index} num={item} index={index} position='west'/>)
-          }
-        </div>
-        <div className='card-box'>
-          {
-            northCard.map((item, index) => <Card key={index} num={item} index={index} position='north'/>)
+            game[position + 'Card'].map((item, index) =>
+              <Card key={index} num={item} index={index} position={position}/>)
           }
         </div>
       </Fragment>
