@@ -1,9 +1,12 @@
 'use strict';
 const pkg = require('../package.json');
-
+const path = require('path');
 module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, '../', 'src'),
+    }
   },
   module: {
     rules: [
@@ -24,7 +27,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 1,
-            name: pkg.version + '/asset/img/[name].[ext]?v=[hash:7]'
+            name: pkg.version + '/asset/imgs/[name].[ext]?v=[hash:7]'
           }
         },
       },
@@ -36,7 +39,7 @@ module.exports = {
           options: {
             fallback: 'file-loader',
             limit: 10000,
-            name: pkg.version + '/asset/medias/[name].[ext]?v=[hash:7]'
+            name: pkg.version + '/asset/videos/[name].[ext]?v=[hash:7]'
           }
         },
       }

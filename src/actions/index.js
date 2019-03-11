@@ -1,23 +1,24 @@
 'use strict';
-let nextTodoId = 0
-export const addTodo = text => {
-  return {
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-  }
-}
 
-export const setVisibilityFilter = filter => {
+export const TAKE_CARD = (num, position, needSort = false) => {
   return {
-    type: 'SET_VISIBILITY_FILTER',
-    filter
+    type: 'TAKE_CARD',
+    num,
+    position,
+    needSort
   }
-}
+};
 
-export const toggleTodo = id => {
+export const THROW_CARD = (index) => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'THROW_CARD',
+    index,
   }
-}
+};
+
+export const CHANGE_ROUND = (round) => {
+  return {
+    type: 'CHANGE_ROUND',
+    round,
+  }
+};
