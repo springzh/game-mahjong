@@ -5,6 +5,8 @@ import './index.less';
 import {THROW_CARD, CHANGE_ROUND} from "@/actions";
 import connect from '@/connect';
 
+const debug = require('debug')('game');
+
 class Card extends React.Component {
 
   throwCard = index => {
@@ -12,6 +14,7 @@ class Card extends React.Component {
     const {round, playing} = game;
     if (round === position && playing === 1) {
       dispatch(THROW_CARD(index));
+      debug(position + ' throw card');
     }
   };
 
