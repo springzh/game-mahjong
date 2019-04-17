@@ -4,6 +4,6 @@
 
 # 预览效果 
 
-![dov]('./doc.gif')
+![dov](./doc.gif)
 
 # coding
